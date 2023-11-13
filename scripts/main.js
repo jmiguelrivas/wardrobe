@@ -13,11 +13,21 @@ Alpine.store('selected', {
 Alpine.store('db', {
   items: items.map(item => {
     const currentCollection = getCollection(item.collection)
+    const description = currentCollection.description
+    const brand = currentCollection.brand
+
+    const url = [
+      `img/${item.collection}`,
+      description.join('-').toLowerCase().replace(' ', '-'),
+      item.style,
+      `${item.shoot}.jpg`,
+    ].join('_')
 
     return {
       ...item,
-      description: currentCollection.description,
-      brand: currentCollection.brand,
+      description,
+      brand,
+      url,
     }
   }),
 })

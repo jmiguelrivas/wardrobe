@@ -36,17 +36,9 @@
     }"
     >
       <template x-for="item in items">
-        <li
-          x-data="{
-            source: [
-              `img/${item.collection}`,
-              item.style,
-              `${item.shoot}.jpg`
-            ].join('_')
-          }"
-        >
+        <li>
           <img
-            x-bind:src="source"
+            x-bind:src="item.url"
             x-bind:alt="item.description"
           />
         </li>
