@@ -30,11 +30,23 @@
     ></script>
   </head>
   <body>
-    <ul x-data="{ collections }">
-      <template x-for="item in $store.db.collections">
-        <li>
+    <ul
+      x-data="{
+      items: $store.db.items
+    }"
+    >
+      <template x-for="item in items">
+        <li
+          x-data="{
+            source: [
+              `img/${item.collection}`,
+              item.style,
+              `${item.shoot}.jpg`
+            ].join('_')
+          }"
+        >
           <img
-            x-bind:src="`./img/${item.collection}_${item.style}_${item.name}.jpg`"
+            x-bind:src="source"
             x-bind:alt="item.description"
           />
         </li>
