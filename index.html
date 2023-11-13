@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-DO">
+<html lang="en-US">
   <head>
     <meta charset="utf-8" />
     <title>Wardrobe</title>
@@ -31,8 +31,13 @@
   </head>
   <body>
     <ul x-data="{ collections }">
-      <template x-for="item in collections">
-        <li x-text="item"></li>
+      <template x-for="item in $store.db.collections">
+        <li>
+          <img
+            x-bind:src="`./img/${item.collection}_${item.style}_${item.name}.jpg`"
+            x-bind:alt="item.description"
+          />
+        </li>
       </template>
     </ul>
   </body>
