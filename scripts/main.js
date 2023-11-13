@@ -13,12 +13,15 @@ Alpine.store('selected', {
 Alpine.store('db', {
   items: items.map(item => {
     const currentCollection = getCollection(item.collection)
-    const description = currentCollection.description
+    const description = currentCollection.description.join(', ')
     const brand = currentCollection.brand
 
     const url = [
       `img/${item.collection}`,
-      description.join('-').toLowerCase().replace(' ', '-'),
+      description
+        .toLowerCase()
+        .replace(/[\s/,]/g, '-')
+        .replace(/(-)+/g, '-'),
       item.style,
       `${item.shoot}.jpg`,
     ].join('_')
