@@ -31,17 +31,23 @@
   </head>
   <body>
     <ul
+      class="gallery"
       x-data="{
-      items: $store.db.items
+      items: $store.db.items,
+      getUrl: $store.helpers.getUrl,
+      getStyle: $store.helpers.getStyle,
     }"
     >
       <template x-for="item in items">
-        <li>
-          <img
-            x-bind:src="item.url"
-            x-bind:alt="item.description"
-          />
-        </li>
+        <template x-for="shot in item.shots">
+          <li>
+            <img
+              x-bind:src="getUrl(item, shot)"
+              x-bind:style="getStyle(shot)"
+              x-bind:alt="item.description"
+            />
+          </li>
+        </template>
       </template>
     </ul>
   </body>

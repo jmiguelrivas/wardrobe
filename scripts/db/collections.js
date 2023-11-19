@@ -97,4 +97,9 @@ export default [
     brand: 'Arciton',
     description: [style.long_underwear],
   },
+  {
+    id: 20,
+    brand: 'Saucony',
+    description: [style.lowcut_socks],
+  },
 ]

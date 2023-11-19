@@ -14,5 +14,8 @@ export default {
   workout_shorts: 'Workout Shorts',
   compression_shorts: 'Compression Shorts',
 
-  long_underwear: "Long Underwear"
+  long_underwear: "Long Underwear",
+
+  lowcut_socks: "Lowcut Socks",
+  long_socks: "Long Socks",
 }

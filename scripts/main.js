@@ -6,6 +6,13 @@ function getCollection(id) {
   return collections.find(collection => collection.id === id)
 }
 
+function getAttr(attr, obj) {
+  const value = obj?.[attr]
+  if (value) {
+    return [attr, value].join(':')
+  }
+}
+
 Alpine.store('selected', {
   default: [],
 })
@@ -16,21 +23,27 @@ Alpine.store('db', {
     const description = currentCollection.description.join(', ')
     const brand = currentCollection.brand
 
-    const url = [
-      `img/${item.collection}`,
-      description
-        .toLowerCase()
-        .replace(/[\s/,]/g, '-')
-        .replace(/(-)+/g, '-'),
-      item.style,
-      `${item.shoot}.jpg`,
-    ].join('_')
-
     return {
       ...item,
       description,
       brand,
-      url,
     }
   }),
+})
+
+Alpine.store('helpers', {
+  getUrl: (item, shot) => {
+    return [`img/${item.collection}`, item.style, `${shot.name}.jpg`].join('_')
+  },
+  getStyle: shot => {
+    return [
+      getAttr('width', shot?.size),
+      getAttr('top', shot?.position),
+      getAttr('bottom', shot?.position),
+      getAttr('left', shot?.position),
+      getAttr('right', shot?.position),
+    ]
+      .filter(e => e)
+      .join(';')
+  },
 })
