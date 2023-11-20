@@ -13,11 +13,21 @@ function getAttr(attr, obj) {
   }
 }
 
-Alpine.store('selected', {
-  default: [],
-})
+Alpine.store('data', {
+  gallery: items.map(item => {
+    const currentCollection = getCollection(item.collection)
+    const description = currentCollection.description.join(', ')
+    const brand = currentCollection.brand
+    const shots = item.shots.filter(shot => shot.main)
 
-Alpine.store('db', {
+    return {
+      ...item,
+      description,
+      brand,
+      shots,
+    }
+  }),
+
   items: items.map(item => {
     const currentCollection = getCollection(item.collection)
     const description = currentCollection.description.join(', ')
